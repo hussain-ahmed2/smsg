@@ -1,0 +1,235 @@
+:root {
+	--color: #333;
+	--bgcolor: #f0f0f0;
+	--borderc: #ccc;
+	--hoverc: #f2f2f2;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: system-ui, sans-serif;
+}
+
+body {
+	background-color: var(--bgcolor);
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+p {
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+h1 {
+	font-size: 2rem;
+}
+
+h2 {
+	font-size: 1.75rem;
+}
+
+h3 {
+	font-size: 1.5rem;
+}
+
+h4 {
+	font-size: 1.25rem;
+}
+
+h5 {
+	font-size: 1rem;
+}
+
+h6 {
+	font-size: .75rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 500;
+}
+
+a {
+	text-decoration: none;
+	color: var(--color);
+	transition: all 0.1s linear;
+}
+
+a:hover {
+	color: dodgerblue;
+}
+
+header {
+	background-color: white;
+	border-bottom: 1px solid var(--borderc);
+	position: sticky;
+	top: 0;
+	height: 50px;
+	overflow: hidden;
+}
+
+nav {
+	display: flex;
+	max-width: 1200px;
+	padding: 0 20px;
+	width: 100%;
+	margin: 0 auto;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+}
+
+nav > a {
+	display: flex;
+	align-items: center;
+}
+
+nav ul {
+	display: flex;
+	list-style: none;
+	height: 100%;
+	align-items: center;
+	gap: 20px;
+	width: 50%;
+	justify-content: center;
+}
+
+nav ul li a {
+	display: block;
+	padding: 10px 20px;
+	font-size: 1.05rem;
+	font-weight: 500;
+	border-radius: 25px;
+}
+
+nav ul li a:hover {
+	background-color: var(--hoverc);
+}
+
+#signup {
+	background-color: gold;
+	padding: 8px 20px;
+	border-radius: 25px;
+}
+
+#signup:hover {
+	color: gold;
+	background-color: whitesmoke;
+	outline: 1px solid var(--borderc);
+	box-shadow: 2px 4px 8px hsl(0, 0%, 70%);
+	border-radius: 25px;
+}
+
+#login {
+	background-color: lawngreen;
+	padding: 8px 20px;
+	border-radius: 25px;
+}
+
+#login:hover {
+	color: lawngreen;
+	background-color: whitesmoke;
+	outline: 1px solid var(--borderc);
+	box-shadow: 2px 4px 8px hsl(0, 0%, 70%);
+}
+
+
+#logout {
+	background-color: orangered;
+	padding: 8px 20px;
+	border-radius: 25px;
+	color: #fff;
+}
+
+#logout:hover {
+	color: orangered;
+	background-color: whitesmoke;
+	outline: 1px solid var(--borderc);
+	box-shadow: 2px 4px 8px hsl(0, 0%, 70%);
+}
+
+main {
+	min-height: calc(100vh - 100px);
+	width: 100%;
+}
+
+footer {
+	height: 50px;
+	background-color: #f9f9f9;
+	border-top: 1px solid var(--borderc);
+	font-style: italic;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+}
+
+footer p {
+	font-size: .875rem;;
+}
+
+.msg {
+	display: block;
+	position: fixed;
+	top: 200px;
+	right: 15%;
+	background-color: white;
+	padding: 20px;
+	max-width: 300px;
+	width: 100%;
+	margin: 10px;
+	border: 1px solid var(--borderc);
+	box-shadow: 0 2px 4px hsl(0, 0%, 80%);
+	text-transform: capitalize;
+	display: flex;
+	justify-content: space-between;
+}
+
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
+}
+
+.msgdismiss {
+	cursor: pointer;
+	color: var(--color);
+}
+
+#logo {
+	width: 2rem;
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {
+	header {
+		height: fit-content;
+	}
+
+	nav {
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.msg {
+		right: 5%;
+	}
+
+	@keyframes msganimation {
+		from {
+			right: 0;
+			opacity: 0;
+		}
+		to {
+			right: 5%;
+			opacity: 1;
+		}
+	}
+}

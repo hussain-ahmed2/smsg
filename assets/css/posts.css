@@ -1,0 +1,73 @@
+@import 'reset.css';
+
+main {
+	text-align: center;
+	padding: 20px;
+}
+
+#messages-container {
+	margin-top: 50px;
+}
+
+#messages {
+	margin: 25px auto;
+	display: flex;
+	flex-direction: column;
+	max-width: 700px;
+	width: 100%;
+	border: 1px solid var(--borderc);
+	border-radius: 10px;
+	color: var(--color);
+	background-color: #fff;
+	overflow: hidden;
+}
+
+#messages div {
+	padding: 20px;
+	border-bottom: 1px solid var(--borderc);
+	transition: all .1s linear;
+	cursor: pointer;
+}
+
+#messages div:hover {
+	background-color: var(--hoverc);
+}
+
+#messages div a {
+	display: flex;
+	gap: 5px;
+  margin-bottom: 10px;
+}
+
+#messages div a:hover {
+	color: dodgerblue;
+}
+
+#messages div a:hover img {
+	border-color: dodgerblue;
+}
+
+#messages div:last-child {
+	border-color: transparent;
+}
+
+#messages div a p {
+	text-align: left;
+	font-weight: 500;
+	font-size: .75rem;
+} 
+
+.user-icon {
+	width: 1.15rem;
+	border: 1px solid var(--borderc);
+	border-radius: 50%;
+}
+
+#messages div > p {
+	padding-bottom: 10px;
+}
+
+#timestamp {
+	font-size: .6rem;
+	text-align: right;
+}
