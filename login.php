@@ -11,11 +11,22 @@
 
 	if(isset($_SESSION['err'])){
 		echo msg($_SESSION['err'], 'red');
+		unset($_SESSION['err']);
 	}
 
 	if(isset($_POST['submit'])){
 		$user = $_POST['emailorphone'];
 		$password = $_POST['password'];
+
+		if($user == ""){
+			$_SESSION['err'] = 'email or phone field is empty';
+			return header('location:login.php');
+		}
+
+		if($password == ""){
+			$_SESSION['err'] = 'password field is empty';
+			return header('location:login.php');
+		}
 
 		$query = "SELECT * FROM users WHERE password = '$password' and email = '$user' or phone = '$user'";
 		$exists = mysqli_query($conn, $query);
@@ -24,7 +35,7 @@
 			session_start();
 			$row = mysqli_fetch_assoc($exists);
 			$_SESSION['userid'] = $row['id'];
-			$_SESSION['welcome'] = 'you have successfully loged in';
+			$_SESSION['msg'] = 'you have successfully loged in';
 			unset($_SESSION['err']);
 			header('location:user.php');
 		}else {

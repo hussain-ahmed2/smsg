@@ -19,12 +19,6 @@
 		header('location:index.php');
 	}
 
-	if(isset($_GET['delmsgid'])){
-		$delmsgid = $_GET['delmsgid'];
-		$query = mysqli_query($conn, "DELETE from message where id = '$delmsgid'");
-		return header('location:user.php');
-	}
-
 	$id = $_SESSION['userid'];
 	$query = "SELECT * FROM users WHERE id = '$id'";
 	$user = mysqli_query($conn, $query);
@@ -53,22 +47,17 @@
       <div id="messages">
 				<?php 
 
-					$query = "select * from message where userid = '$id' order by id desc limit 3";
+					$query = "select * from message where userid = '$id' order by id desc";
 					$result = mysqli_query($conn, $query);
 					
 					if(mysqli_num_rows($result) > 0){
 						while($messages = mysqli_fetch_assoc($result)){
 							?>
 							<div>
-								<a class='user-link' href="#"><img class="user-icon" src="./assets/images/user-icon.svg" alt="user-icon"><p><?php echo $row['name']; ?></p></a>
+								<a href="#"><img class="user-icon" src="./assets/images/user-icon.svg" alt="user-icon"><p><?php echo $row['name']; ?></p></a>
 								<p><?php echo $messages['msg']; ?></p>
-								<div class="timestamp"><?php echo $messages['timestamp']; ?></div>
-								<p class="du-links">
-									<a class='delete-post' href="user.php?delmsgid=<?php echo $messages['id']; ?>">Delete</a>
-									<a class='update-post' href="updatepost.php?msgid=<?php echo $messages['id']; ?>">Update</a>
-								</p>
+								<p id="timestamp"><?php echo $messages['timestamp']; ?></p>
 							</div>
-							
 							<?php 
 						}
 					}else {
@@ -76,11 +65,6 @@
 					}
 				 ?>
 			</div>
-			<?php 
-			if(mysqli_num_rows(mysqli_query($conn, "select * from message where userid = '$id'"))>3){ ?>
-			<a id="user-all-posts" href="userallposts.php">View All Posts</a>
-			<?php }
-			?>
     </section>
   </main>
 

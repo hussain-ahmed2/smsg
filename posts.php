@@ -4,6 +4,14 @@ include('connection.php');
 include('utility.php');
 session_start();
 
+$id = $_SESSION['userid'];
+
+if(isset($_GET['delmsgid'])){
+	$delmsgid = $_GET['delmsgid'];
+	$query = mysqli_query($conn, "DELETE from message where id = '$delmsgid'");
+	return header('location:posts.php');
+}
+
 ?>
 
 <html lang="en">
@@ -22,6 +30,7 @@ session_start();
 		<h1>Posts</h1>
 		
     <section id="messages-container">
+			<h3>Latest posts <a id="create-post" href="createpost.php">Create New Post</a></h3>
       <div id="messages">
 				<?php 
 
@@ -35,10 +44,18 @@ session_start();
 							$user = mysqli_fetch_assoc($userquery);
 							?>
 							<div>
-								<a href="#"><img class="user-icon" src="./assets/images/user-icon.svg"><p><?php echo $user['name']; ?></p></a>
+								<a href="#"><img class="user-icon" src="./assets/images/user-icon.svg" alt="user-icon"><p><?php echo $user['name']; ?></p></a>
 								<p><?php echo $messages['msg']; ?></p>
-								<p id="timestamp"><?php echo $messages['timestamp']; ?></p>
-							</div>
+								<div class="timestamp"><?php echo $messages['timestamp']; ?></div>
+								<?php 
+									if($id == $userid) { ?>
+										<p class="du-links">
+									<a class='delete-post' href="posts.php?delmsgid=<?php echo $messages['id']; ?>">Delete</a>
+									<a class='update-post' href="updatepost.php?msgid=<?php echo $messages['id']; ?>">Update</a>
+								</p>
+									<?php }
+								?>
+								</div>
 							<?php 
 						}
 					}else {

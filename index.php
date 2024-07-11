@@ -39,7 +39,7 @@ if(isset($_SESSION['userid'])){
 							$user = mysqli_fetch_assoc($userquery);
 							?>
 							<div>
-								<a href="#"><img class="user-icon" src="./assets/images/user-icon.svg"><p><?php echo $user['name']; ?></p></a>
+								<a href="#"><img class="user-icon" src="./assets/images/user-icon.svg" alt="user-icon"><p><?php echo $user['name']; ?></p></a>
 								<p><?php echo $messages['msg']; ?></p>
 								<p id="timestamp"><?php echo $messages['timestamp']; ?></p>
 							</div>

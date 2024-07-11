@@ -4,8 +4,9 @@
 	include('utility.php');
 	session_start();
 
-	if(isset($_SESSION['msg'])){
-		echo msg($_SESSION['msg'], 'red');
+	if(isset($_SESSION['err'])){
+		echo msg($_SESSION['err'], 'red');
+		unset($_SESSION['err']);
 	}
 
 	if(isset($_POST['submit'])){
@@ -15,17 +16,38 @@
 		$password = $_POST['password'];
 		$cpassword = $_POST['cpassword'];
 
+		if($name == ""){
+			$_SESSION['err'] = 'name field is empty';
+			return header('location:signup.php');
+		}
+		if($email == ""){
+			$_SESSION['err'] = 'email field is empty';
+			return header('location:signup.php');
+		}
+		if($phone == ""){
+			$_SESSION['err'] = 'phone field is empty';
+			return header('location:signup.php');
+		}
+		if($password == ""){
+			$_SESSION['err'] = 'password field is empty';
+			return header('location:signup.php');
+		}
+		if($cpassword == ""){
+			$_SESSION['err'] = 'confirm password field is empty';
+			return header('location:signup.php');
+		}
+
 		$query = mysqli_query($conn, "select * from users where email = '$email' or phone = '$phone'");
 		$row = mysqli_num_rows($query);
 		$reault = mysqli_fetch_assoc($query);
 
 		if($row > 0){
-			$_SESSION['msg'] = 'user already exists';
+			$_SESSION['err'] = 'user already exists';
 			header("location:signup.php");
 		}else{
 			if($password == $cpassword){
 				$query = "INSERT INTO users (name, email, phone, password) VALUES ('$name', '$email', '$phone', '$password')";
-				$_SESSION['msg'] = 'something went wrong!';
+				$_SESSION['err'] = 'something went wrong!';
 				if(!$query) return header('location:signup.php');
 				$success = mysqli_query($conn, $query);
 				if(!$success) return header('location:signup.php');
@@ -33,7 +55,7 @@
 				header("location:login.php");
 			}
 			else{
-				$_SESSION['msg'] = 'password did not match';
+				$_SESSION['err'] = 'password did not match';
 				return header("location:signup.php");
 			}
 		}
