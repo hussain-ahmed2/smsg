@@ -8,7 +8,7 @@ smsg/project_images/ -- where all of my projects screenshots are held.
 
 
 -- Index/Home page when you are not logged in
-![Alt text](projects_images/index.png)
+![Alt text](project_images/index.png)
 
 -- SignUp/Register page
 ![Alt text](project_images/signuppage.png)
