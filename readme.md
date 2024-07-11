@@ -37,6 +37,6 @@ this projects has server side user authentication as client side.
 users have ability to update and delete there post from home and also all users post page.
 ![Alt text](project_images/updatedeletefromalluserspage.png)
 
-Thank 💙 you for chacking my project out.
+Thank 💙 you for chacking out my project.
 
 
