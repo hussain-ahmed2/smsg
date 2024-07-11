@@ -33,7 +33,7 @@
     $insert = mysqli_query($conn, $iq);
     
     if(isset($insert)){
-      $_SESSION['msg'] = 'post created successfully';
+      $_SESSION['msg'] = 'post updated successfully';
       header('location:user.php');
     }else{
       $_SESSION['err'] = 'something went wrong!';
@@ -59,7 +59,7 @@
 
 	<main>
 		<section>
-			<h1>Create Post</h1>
+			<h1>Update Post</h1>
 			<form method="POST" autocomplete="off">
 				<label for="msg">Whats on your mind:</label>
 				<textarea name="msg" id="msg"  cols="30" rows="6" placeholder="Type here..." required><?php echo $message; ?></textarea>
